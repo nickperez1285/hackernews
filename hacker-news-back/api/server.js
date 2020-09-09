@@ -1,3 +1,5 @@
+// add path to DB config 
+
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
@@ -10,7 +12,7 @@ const knexSessionConnect = require('connect-session-knex')
 const knexSessionStore = knexSessionConnect(sesh)
 
 const sessionConfig = {
-    name: 'seshcook', // name of cookie 
+    name: 'seshcookie', // name of cookie 
     secret: "my secret",
     cookies: {
         maxAge: 1000 * 500, // life of cookie 
@@ -21,7 +23,10 @@ const sessionConfig = {
     resave: false, // recreates session if not save 
     saveUninitialized: false, // legalal compliance , true on production 
     store: new knexSessionStore({ // saves cookie acceessiability info 
-        knex: require('../database/connection.js'),
+
+    	// add db config file path here 
+        knex: require( DB config),
+        // 
         tablename: "sessions",
         createtable: true,
         clearInterval: 1000 * 100 * 100
