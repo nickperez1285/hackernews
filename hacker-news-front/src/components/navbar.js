@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 
 const Navbar = () => {
@@ -9,18 +9,24 @@ const Navbar = () => {
 
     return (
         <table style = {{
-            width: "100%"
+            width: "100%",
+            textDecoration: "none"
         }}>
 	<tr className = "header" style={{
             background: "#ff6600",
             height: "10px",
+            textDecoration: "none"
         }}>
 		<td style={{
-            textAlign: "left"
+            textAlign: "left",
+            textDecoration: "none",
         }}>
 			<span >
 				<strong>
-				Hacker News
+				<Link to="/" style = {{
+            textDecoration: "none",
+            color: "black"
+        }}>Hacker News </Link> 
 				</strong>
 				<a href="">new | </a>
 				<a href="">past | </a>
@@ -28,19 +34,24 @@ const Navbar = () => {
 				<a href="">ask | </a>
 				<a href="">show | </a>
 				<a href="">jobs | </a>
-				<a href="">submit | </a>
+
+				<a href="/submit" style= {{ }}>submit | </a>
+
 			</span>
 		</td>
 		<td style={{
-            textAlign: "right"
+            textAlign: "right",
+
         }}>
-        <Link to="/login">
+        <Link to="/login" style = {{
+            textDecoration: "none",
+            color: "black"
+        }}>
 			login
 			</Link>
 		</td>
 	</tr>
 	</table>
-
 
 
     )

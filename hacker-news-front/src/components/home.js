@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getPosts } from '../actions';
 
-const Home = () => {
+
+
+const Home = (props) => {
     const [posts, setPosts] = useState([])
     // temporary
     useEffect(() => {
         axios.get(`https://hn.algolia.com/api/v1/search?tags=front_page`)
             .then(res => {
                 // const data = res.data.hits
+                console.log(props.getPosts())
                 setPosts(res.data.hits)
             })
             .catch(err => {
@@ -26,7 +31,7 @@ const Home = () => {
             <table>
 				<tbody>
 					<tr >
-						<td align="left" >{idx + 1}
+						<td align="left" >{idx + 1}.
 							<a href="" style = {{
                 textDecoration: "none"
             }}>
@@ -57,7 +62,19 @@ const Home = () => {
         }
 		</td>
 	</tr>
+	{console.log(props.state)}
+
 </table>
+
     )
 }
-export default Home;
+
+
+const mapStateToProps = state => {
+    return {
+        state
+    };
+};
+export default connect(mapStateToProps, {
+    getPosts
+})(Home);
