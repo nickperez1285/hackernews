@@ -44,4 +44,7 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/posts", postsRouter);
 
-module.exports = app;
+app.listen(3000, () => {
+  console.log("Port started at 3000");
+});
+//module.exports = app;

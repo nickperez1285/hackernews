@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 var userdb = require("../models/users.model");
 module.exports = {
   register: async (req, res) => {
+    console.log(req.body);
     let user = req.body;
     bcrypt.genSalt(10, function (err, salt) {
       bcrypt.hash(user.password, salt, async function (err, hash) {
