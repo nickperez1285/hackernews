@@ -4,9 +4,12 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var session = require("express-session");
 var mongoose = require("mongoose");
+const helmet = require("helmet");
+const cors = require("cors");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/userAuth.route");
+var postsRouter = require("./routes/posts.route");
 
 var app = express();
 
@@ -26,6 +29,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(helmet());
+app.use(cors());
 app.use(
   session({
     secret: "Hackernew-opo1121",
@@ -37,7 +42,6 @@ app.use(
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/posts", postsRouter);
 
-app.listen(5000, () => {
-  console.log("Server started at port 5000");
-});
+module.exports = app;

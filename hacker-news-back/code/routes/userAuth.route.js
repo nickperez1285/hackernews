@@ -1,4 +1,3 @@
-const Users = require("../users/users-model.js");
 const router = require("express").Router();
 const userAuth = require("../controllers/userAuth.controller");
 const restricted = require("../services/restricted.middleware");

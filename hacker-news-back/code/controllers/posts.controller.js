@@ -1,27 +1,24 @@
 var postdb = require("../models/posts.model");
 var userdb = require("../models/users.model");
-
+var postServices = require("../services/posts.service");
 module.exports = {
   uploadpost: async (req, res) => {
-    // let { title, link, text } = req.body;
-    // if ((title && (link || text)) {
-    //   if (link) {
-    //     var checkpost = await postdb.findOne({
-    //       $or: [{ title: title }, { link: link }],
-    //     });
-    //     if (checkpost) {
-    //       res.status(411).json({ error: "Post Already Exists" });
-    //     } else {
-    //        var newPost=await new postdb({
-    //            title:title,
-    //            link:
-    //        }).save();
-    //     }
-    //   } else {
-    //   }
-    // } else {
-    //   res.status(301).json({ error: "Please Enter all Fields" });
-    // }
+    let { title, link, text } = req.body;
+    if (title && (link || text)) {
+      postServices
+        .duplicateTitle(title)
+        .then((status) => {
+          if (link) {
+            postServices.duplicateLink(link).then((status) => {});
+          } else {
+          }
+        })
+        .catch((e) => {
+          res.status(411).json({ error: e });
+        });
+    } else {
+      res.status(411).json({ error: "Please Fill All The Details" });
+    }
   },
   deletepost: async (req, res) => {},
   comment: async (req, res) => {},

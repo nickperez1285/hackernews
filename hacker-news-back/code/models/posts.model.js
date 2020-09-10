@@ -18,4 +18,4 @@ var postsSchema = mongoose.Schema({
   upvoters: [String],
 });
 
-module.exports = mongoose.model("users", userSchema);
+module.exports = mongoose.model("postsdb", postsSchema);
