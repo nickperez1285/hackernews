@@ -35,7 +35,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(helmet());
 app.use(cors());
 app.use(
-<<<<<<< HEAD
     session({
         secret: "Hackernew-opo1121",
         resave: false,
@@ -47,29 +46,13 @@ app.use(
 );
 
 
-app.get("/", (req, res) => {
-    res.status(200).json({
-        api: 'up'
-    });
-});
-// app.use("/", indexRouter);
-// app.use("/users", usersRouter);
-// app.use("/posts", postsRouter);
-=======
-  session({
-    secret: "Hackernew-opo1121",
-    // resave: false,
-    // saveUninitialized: true,
-    cookie: {},
-  })
-);
-
+// app.get("/", (req, res) => {
+//     res.status(200).json({
+//         api: 'up'
+//     });
+// });
 app.use("/", indexRouter);
-app.use("/users/", usersRouter);
-app.use("/posts/", postsRouter);
->>>>>>> 238119bf9f9d9f87aec4e306e2356abe5ebdc017
+app.use("/users", usersRouter);
+app.use("/posts", postsRouter);
 
-app.listen(3000, () => {
-  console.log("Port started at 3000");
-});
-//module.exports = app;
+// module.exports = app;
