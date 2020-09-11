@@ -2,14 +2,22 @@ const router = require("express").Router();
 const postController = require("../controllers/posts.controller");
 const restricted = require("../services/restricted.middleware");
 
-router.post("/uploadpost", restricted, postController.uploadpost);
+router.post("/post", restricted, postController.uploadPost);
 
-router.get("/deletepost/:id", restricted, postController.deletepost);
+router.delete("/post/:id", restricted, postController.deletePost);
 
 router.post("/comment", restricted, postController.comment);
 
-router.get("/deletecomment/:id", restricted, postController.deletecomment);
+router.delete("/comment/:id", restricted, postController.deleteComment);
 
-router.get("/upvote/:id", restricted, postController.upvote);
+router.put("/upvote/:id", restricted, postController.upvote);
+
+router.get("/", postController.getAllPosts);
+
+router.get("/postcomments/:id", postController.getAllComments);
+
+router.get("/comment/:id", postController.getComment);
+
+router.get("/upvote/:id", postController.getUpvotes);
 
 module.exports = router;

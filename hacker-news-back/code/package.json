@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+<<<<<<< HEAD
     "server": "nodemon",
+=======
+>>>>>>> 238119bf9f9d9f87aec4e306e2356abe5ebdc017
     "start": "node app.js"
   },
   "dependencies": {

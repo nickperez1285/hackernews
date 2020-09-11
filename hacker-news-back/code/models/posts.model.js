@@ -10,7 +10,8 @@ var postsSchema = mongoose.Schema({
     unique: true,
   },
   text: String,
-  comments: Object,
+  authorId: String,
+  comments: [String],
   upvote: {
     type: Number,
     default: 0,

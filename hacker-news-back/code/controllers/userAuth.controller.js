@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 var userdb = require("../models/users.model");
 module.exports = {
   register: async (req, res) => {
+    console.log(req.body);
     let user = req.body;
     bcrypt.genSalt(10, function (err, salt) {
       bcrypt.hash(user.password, salt, async function (err, hash) {
@@ -25,7 +26,8 @@ module.exports = {
       ) {
         if (status) {
           req.session.username = user.username;
-          req.session.id = user._id;
+          req.session.userId = user._id;
+          console.log(req.session);
           res.status(200).json({ success: "Logged In" });
         } else {
           res.status(401).json({ error: "Invalid Username/Password" });
