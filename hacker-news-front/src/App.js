@@ -8,12 +8,15 @@ import Navbar from "./components/navbar.js"
 import Form from "./components/form.js"
 import PrivateRoute from './components/PrivateRoute';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
+// home1 is logged out home
 function App() {
     return (
         <Router>
 <div className="App">
   <Navbar/>
-    <Route path="/"  exact component={Home} />
+
+    <Route path="/home1"  exact component={Home} />
     <Route path="/login" exact component={Login} />
     <PrivateRoute path="/submit" exact component={Form} />
     <PrivateRoute path="/home" exact component={HomeLoggedIn} />

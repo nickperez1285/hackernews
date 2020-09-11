@@ -2,7 +2,7 @@
   "name": "hacker",
   "version": "1.0.0",
   "description": "react frontend node backend  to start backend  : \" npm run server\" or \"npm start\" to run frontend : \"npm start\"",
-  "main": "server-temp.js",
+  "main": "server.js",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
