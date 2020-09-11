@@ -61,7 +61,7 @@ function authenticator(req, res, next) {
     }
 }
 
-
+// if user and pass correct, toekn sent back 
 app.post('/api/login', (req, res) => {
     const {username, password} = req.body;
     if (username === 'nick' && password === 'pass') {
@@ -79,6 +79,7 @@ app.post('/api/login', (req, res) => {
     }
 });
 
+// authenticator checks for token to proceed
 app.get('/api/posts', authenticator, (req, res) => {
     setTimeout(() => {
         res.send(friends);
