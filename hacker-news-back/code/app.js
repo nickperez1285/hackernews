@@ -34,15 +34,15 @@ app.use(cors());
 app.use(
   session({
     secret: "Hackernew-opo1121",
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true },
+    // resave: false,
+    // saveUninitialized: true,
+    cookie: {},
   })
 );
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
-app.use("/posts", postsRouter);
+app.use("/users/", usersRouter);
+app.use("/posts/", postsRouter);
 
 app.listen(3000, () => {
   console.log("Port started at 3000");

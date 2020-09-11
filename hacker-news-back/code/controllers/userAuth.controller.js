@@ -26,7 +26,8 @@ module.exports = {
       ) {
         if (status) {
           req.session.username = user.username;
-          req.session.id = user._id;
+          req.session.userId = user._id;
+          console.log(req.session);
           res.status(200).json({ success: "Logged In" });
         } else {
           res.status(401).json({ error: "Invalid Username/Password" });
