@@ -103,7 +103,8 @@ const Form = (props) => {
                 </form>
                 </td>
                 </tr>
-            </table>
+{console.log(localStorage)
+        }            </table>
     )
 }
 

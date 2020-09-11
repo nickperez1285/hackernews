@@ -62,7 +62,7 @@ const Home = (props) => {
         }
 		</td>
 	</tr>
-	{console.log(props.state)}
+	{console.log("home", props.state)}
 
 </table>
 
