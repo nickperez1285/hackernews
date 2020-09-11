@@ -17,7 +17,13 @@ var app = express();
 var dburl = "mongodb+srv://user1:12345@hackernewsclone.0qubq.mongodb.net/HackerNews?retryWrites=true&w=majority";
 
 mongoose.connect(dburl, {
+<<<<<<< HEAD
     useNewUrlParser: true
+=======
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+>>>>>>> 6a226664045df50853ed0d6abf00cf8135eb8d31
 });
 const db = mongoose.connection;
 
@@ -35,6 +41,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(helmet());
 app.use(cors());
 app.use(
+<<<<<<< HEAD
     session({
         secret: "Hackernew-opo1121",
         resave: false,
@@ -43,6 +50,14 @@ app.use(
             secure: true
         },
     })
+=======
+  session({
+    secret: "Hackernew-opo1121",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {},
+  })
+>>>>>>> 6a226664045df50853ed0d6abf00cf8135eb8d31
 );
 
 
