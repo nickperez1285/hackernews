@@ -11,9 +11,15 @@ var http = require('http');
 /**
  * Get port from environment and store in Express.
  */
+app.set('port', port);
 
 var port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+
+// app.get("/", (req, res) => {
+//     res.status(200).json({
+//         api: 'up'
+//     });
+// });
 
 /**
  * Create HTTP server.
