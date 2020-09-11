@@ -48,7 +48,7 @@ app.use("/", indexRouter);
 app.use("/users/", usersRouter);
 app.use("/posts/", postsRouter);
 
-app.listen(3000, () => {
-  console.log("Port started at 3000");
+app.listen(process.env.PORT || 8081, () => {
+  console.log("APPLICATION STARTED");
 });
 //module.exports = app;
