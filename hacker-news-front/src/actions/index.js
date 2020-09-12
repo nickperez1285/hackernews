@@ -38,8 +38,7 @@ export const addPost = (post) => (dispatch) => {
     // // console.log(info, "infocookie")
 
     return axios.post("https://hackernewsclone5.herokuapp.com/posts/post", post, {
-        withCredentials: true,
-        crossDomain: true
+
     })
 
 
