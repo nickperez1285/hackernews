@@ -9,11 +9,11 @@ const HomeLoggedIn = (props) => {
     const [posts, setPosts] = useState([])
     // temporary
     useEffect(() => {
-        axios.get(`https://hn.algolia.com/api/v1/search?tags=front_page`)
+        axios.get(`https://superior2020.uc.r.appspot.com/posts`)
             .then(res => {
                 // const data = res.data.hits
-                console.log(props.getPosts())
-                setPosts(res.data.hits)
+                // console.log(props.getPosts())
+                setPosts(res.data.posts)
             })
             .catch(err => {
                 console.log(err)
@@ -26,45 +26,45 @@ const HomeLoggedIn = (props) => {
         <table style = {{
             width: "100%"
         }}>
-	
-	<tr className = "homebody">
-		<td>
-			{ posts.map((post, idx) => (
+    
+    <tr className = "homebody">
+        <td>
+            { posts.map((post, idx) => (
             <table>
-				<tbody>
-					<tr >
-						<td align="left" >{idx + 1}.
-							<a href="" style = {{
+                <tbody>
+                    <tr >
+                        <td align="left" >{idx + 1}.
+                            <a href="" style = {{
                 textDecoration: "none"
             }}>
-								^
-							</a>
-							
-							<a href = {post.url} style = {{
+                                ^
+                            </a>
+                            
+                            <a href = {post.url} style = {{
                 textDecoration: "none",
                 color: 'black',
                 textAlign: 'left'
             }}> {post.title}     </a>
-						</td>
-					</tr>
-					
-						<td className = "subtext"  style = {{
+                        </td>
+                    </tr>
+                    
+                        <td className = "subtext"  style = {{
                 fontSize: "10px",
                 display: "inherit"
             }}>
-				{post.points} points by {post.author} | <a href="/"  style = {{
+                {post.points} points by {post.author} | <a href="/"  style = {{
                 textDecoration: "none",
                 color: 'black',
             }}> {post.num_comments} comments</a>
-				</td>
-				</tbody>
-			
-			</table>
+                </td>
+                </tbody>
+            
+            </table>
         ))
         }
-		</td>
-	</tr>
-	</table>
+        </td>
+    </tr>
+    </table>
 
     )
 }

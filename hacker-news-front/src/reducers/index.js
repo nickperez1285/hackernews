@@ -13,21 +13,23 @@ export const apiReducer = (state = initState, action) => {
         return {
             ...state,
             error: "",
-            isFetching: true
+            isFetching: true,
+
         };
     case GET_POSTS_SUCCESS:
         return {
             ...state,
             error: "",
             isFetching: false,
-            posts: action.payload
+            posts: action.payload,
         }
 
     case GET_POSTS_FAIL:
         return {
             ...state,
             error: action.payload,
-            isFetching: false
+            isFetching: false,
+
 
         }
     default:

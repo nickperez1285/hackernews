@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getPosts } from '../actions';
+import Navbar from "./navbar.js"
+
 
 
 
@@ -24,45 +26,45 @@ const Home = (props) => {
         <table style = {{
             width: "100%"
         }}>
-	
-	<tr className = "homebody">
-		<td>
-			{ posts.map((post, idx) => (
+    
+    <tr className = "homebody">
+        <td>
+            { posts.map((post, idx) => (
             <table>
-				<tbody>
-					<tr >
-						<td align="left" >{idx + 1}.
-							<a href="" style = {{
+                <tbody>
+                    <tr >
+                        <td align="left" >{idx + 1}.
+                            <a href="" style = {{
                 textDecoration: "none"
             }}>
-								^
-							</a>
-							
-							<a href = {post.url} style = {{
+                                ^
+                            </a>
+                            
+                            <a href = {post.url} style = {{
                 textDecoration: "none",
                 color: 'black',
                 textAlign: 'left'
             }}> {post.title}     </a>
-						</td>
-					</tr>
-					
-						<td className = "subtext"  style = {{
+                        </td>
+                    </tr>
+                    
+                        <td className = "subtext"  style = {{
                 fontSize: "10px",
                 display: "inherit"
             }}>
-				{post.points} points by {post.author} | <a href="/"  style = {{
+                {post.points} points by {post.author} | <a href="/"  style = {{
                 textDecoration: "none",
                 color: 'black',
             }}> {post.num_comments} comments</a>
-				</td>
-				</tbody>
-			
-			</table>
+                </td>
+                </tbody>
+            
+            </table>
         ))
         }
-		</td>
-	</tr>
-	{console.log("home", props.state)}
+        </td>
+    </tr>
+    {console.log("home", props.state)}
 
 </table>
 

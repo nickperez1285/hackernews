@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import Navbar from "./navbar.js"
+import { addPost } from '../actions';
+
+
 
 // make into private route 
 
 const Form = (props) => {
     const [post, setPost] = useState(
         {
-            title: '',
-            url: '',
-            text: '',
+            "title": "",
+            "link": "",
+            "text": "",
+            "authorId": localStorage.getItem('username'),
 
         })
 
@@ -24,12 +29,16 @@ const Form = (props) => {
     const handleSubmit = e => {
         e.preventDefault()
         // needs to be made
-        props.addPost(post);
+        props.addPost({
+            "authorId": "nick1",
+            "title": "pass",
+            "text": "testasxz"
+        });
+        console.log(post)
         setPost({
-
-            title: '',
-            url: '',
-            text: '',
+            "title": '',
+            "link": '',
+            "text": ''
 
         });
     };
@@ -82,7 +91,7 @@ const Form = (props) => {
                    <center><p>OR</p></center>
 
 
-				TEXT
+                TEXT
                     <textarea
         name="text"
         onChange={changeHandler}
@@ -112,4 +121,6 @@ const Form = (props) => {
 
 
 
-export default connect(null, {})(Form);
+export default connect(null, {
+    addPost
+})(Form);

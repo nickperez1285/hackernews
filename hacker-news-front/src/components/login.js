@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { login } from '../actions';
-
+import { BrowserRouter as Router, Route, useHistory } from "react-router-dom"
 const Login = (props) => {
-
-
+    let history = useHistory()
     const [credentials, setCredentials] = useState({
         username: '',
         password: ''
     })
-
-
-    const [loggedIn, setLoggedIn] = useState(true)
-
-
+    // const [loggedIn, setLoggedIn] = useState(props.loggedIn)
     const handleChange = e => {
         setCredentials({
             ...credentials,
@@ -21,64 +16,52 @@ const Login = (props) => {
         });
     };
 
-    const handleLogout = e => {
-        e.preventDefault()
-        localStorage.clear()
-        setLoggedIn(!loggedIn)
-        console.log("logged out")
-
-        props.history.push('/home');
-
-    };
-
     const submit = e => {
         e.preventDefault();
         props.login(credentials).then(() => {
-            props.history.push('/home');
+            history.push('/home');
             console.log("logged in")
         });
     }
-
     return (
-    loggedIn ?
-        <div>
-      <p> login info is 
-       username: 'nick',
-      password: 'pass'</p>
-        <form onSubmit={submit}>
-          <label>Username</label> 
 
-          <input
+
+        <div>
+        <p> login info is
+            username: 'test',
+        password: 'test'</p>
+        <form onSubmit={submit}>
+            <label>Username</label>
+            <input
         type="text"
         name="username"
         value={credentials.username}
         onChange={handleChange}
         />
-          <label> password</label> 
-          <input
+            <label> password</label>
+            <input
         type="password"
         name="password"
         value={credentials.password}
         onChange={handleChange}
         />
-          <button>Login</button>
+        {console.log(props.state.loggedIn)}
+            <button>Login</button>
+        
         </form>
-      </div>
-        :
-        <div>
-	<form onSubmit={handleLogout}>
-		
-		<button className="md-button form-button"> Logout </button>
-		{                    console.log(localStorage)}
-	</form>
-</div>
+        
+    </div>
 
 
 
-    );
+    )
 }
 
-
-export default connect(null, {
+const mapStateToProps = state => {
+    return {
+        state
+    };
+};
+export default connect(mapStateToProps, {
     login
 })(Login);

@@ -1,14 +1,17 @@
-import React , { useState } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import React , { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Link, useHistory } from 'react-router-dom';
+import Login from "./login.js"
 const Navbar = (props) => {
+    let history = useHistory()
 
 
     const handleLogout = e => {
         e.preventDefault()
-        localStorage.clear()
+        localStorage.setItem("status", 0)
         console.log("logged out")
-        props.history.push('/home1');
+        history.push('/home1');
     };
+
     return (
         <table style = {{
             width: "100%",
@@ -25,7 +28,7 @@ const Navbar = (props) => {
         }}>
             <span >
                 <strong>
-           {    localStorage.getItem('token') ?
+           {    localStorage.getItem("status") ?
 
             <Link to="/home" style = {{
                 textDecoration: "none",
@@ -51,12 +54,12 @@ const Navbar = (props) => {
         <td style={{
             textAlign: "right",
         }}>
-            {  localStorage.getItem('token') ?
+            { localStorage.getItem("status") ?
 
             <form onSubmit={handleLogout}>
                 
-                <button className="md-button form-button"> Logout </button>
-                {                    console.log(localStorage)}
+                <button > Logout </button>
+           
             </form>
             :
             <Link to="/login" style = {{

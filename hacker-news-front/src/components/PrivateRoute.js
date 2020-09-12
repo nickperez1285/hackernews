@@ -9,7 +9,7 @@ const PrivateRoute = ({component: Component, ...rest}) => {
         {...rest}
         render={props =>
         // conditonal verification setup
-        localStorage.getItem('token') ? (
+        localStorage.getItem('status') ? (
             <Component {...props} />
             ) : (
             <Redirect to="/login" />

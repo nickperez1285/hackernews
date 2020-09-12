@@ -1,4 +1,4 @@
-import React from 'react';
+import React , { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Home from "./components/home.js"
@@ -7,22 +7,24 @@ import Login from "./components/login.js"
 import Navbar from "./components/navbar.js"
 import Form from "./components/form.js"
 import PrivateRoute from './components/PrivateRoute';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 // home1 is logged out home
-function App() {
+function App(props) {
     return (
         <Router>
 <div className="App">
-  <Navbar/>
-
+  <Navbar   />
+    <Route path="/"  exact component={Home} />
     <Route path="/home1"  exact component={Home} />
     <Route path="/login" exact component={Login} />
     <PrivateRoute path="/submit" exact component={Form} />
-    <PrivateRoute path="/home" exact component={HomeLoggedIn} />
-    
-  </div>
-  </Router>
+      <PrivateRoute path="/home" exact component={HomeLoggedIn} />
+        
+      </div>
+      </Router>
     );
 }
-export default App;
+
+export default connect(null, {
+})(App);
