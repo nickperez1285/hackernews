@@ -37,7 +37,7 @@ export const addPost = (post) => (dispatch) => {
     // // const info = Cookies.get('cook')
     // // console.log(info, "infocookie")
 
-    return axios.post("http://hackernewsclone5.herokuapp.com/posts/post", post, {
+    return axios.post("https://hackernewsclone5.herokuapp.com/posts/post", post, {
         withCredentials: true
     })
 
