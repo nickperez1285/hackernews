@@ -122,6 +122,8 @@ export const registerNew = creds => dispatch => {
             res.data.success == "User Created" ? localStorage.setItem("status", 1) : localStorage.setItem('status', 0);
 
             localStorage.getItem('status') ? localStorage.setItem("username", JSON.stringify(creds.username)) : localStorage.setItem('username', '');
+            a
+
             // console.log(localStorage, 'loclstorage info ');
 
 
