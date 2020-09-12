@@ -3,15 +3,19 @@ import { BrowserRouter as Router, Route, Link, useHistory } from 'react-router-d
 import Login from "./login.js"
 const Navbar = (props) => {
     let history = useHistory()
-
-
-    const handleLogout = e => {
-        e.preventDefault()
-        localStorage.setItem("status", 0)
-        console.log("logged out")
+    const [state, setState] = useState(0)
+    const checkStatus = () => {
+        localStorage.getItem("status") ? setState(1) : setState(0)
+    }
+    useEffect(() => {
+        checkStatus()
+    },)
+    const handleLogout = (e) => {
+        e.preventDefault();
+        localStorage.clear();
         history.push('/home1');
+        setState(0)
     };
-
     return (
         <table style = {{
             width: "100%",
@@ -26,10 +30,9 @@ const Navbar = (props) => {
             textAlign: "left",
             textDecoration: "none",
         }}>
-            <span >
+            <span>
                 <strong>
-           {    localStorage.getItem("status") ?
-
+                {    localStorage.getItem("status") ?
             <Link to="/home" style = {{
                 textDecoration: "none",
                 color: "black"
@@ -41,38 +44,41 @@ const Navbar = (props) => {
             }}>Hacker News </Link>
         }
                 </strong>
-
                 <a href="">new | </a>
                 <a href="">past | </a>
-                <a href="">comments | </a>
+                <Link to="/comment" style = {{
+            textDecoration: "none",
+            color: "black"
+        }}>comments | </Link>
                 <a href="">ask | </a>
                 <a href="">show | </a>
                 <a href="">jobs | </a>
-                <a href="/submit" style= {{ }}>submit | </a>
+                <a href="/submit" >submit | </a>
             </span>
         </td>
-        <td style={{
+        <tr>
+            <td style={{
             textAlign: "right",
         }}>
-            { localStorage.getItem("status") ?
-
+                { state ?
             <form onSubmit={handleLogout}>
-                
-                <button > Logout </button>
-           
-            </form>
+                    
+                    <button > Logout </button>
+                    
+                </form>
             :
             <Link to="/login" style = {{
                 textDecoration: "none",
                 color: "black"
             }}>
-                login
-            </Link>
-
+                    login
+                </Link>
         }
-        </td>
+            </td>
+        </tr>
     </tr>
 </table>
     )
 }
+
 export default Navbar;

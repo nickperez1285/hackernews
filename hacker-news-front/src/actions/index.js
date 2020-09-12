@@ -1,7 +1,12 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
+import cookie from 'react-cookies';
+import useAxios, { configure } from 'axios-hooks'
+
 export const GET_POSTS_START = "GET_POSTS_START";
 export const GET_POSTS_SUCCESS = "GET_POSTS_SUCCESS";
 export const GET_POSTS_FAIL = "GET_POSTS_FAIL";
+
 
 export const getPosts = () => (dispatch) => {
     dispatch({
@@ -24,10 +29,23 @@ export const getPosts = () => (dispatch) => {
 }
 
 export const addPost = (post) => (dispatch) => {
-    return axios.post('http://localhost:3000/posts/post', post)
+
+
+    // const {token} = localStorage.getItem("token")
+    // console.log(cookie.load('connect.sid'), "cookie loader"
+    // // )
+    // // const info = Cookies.get('cook')
+    // // console.log(info, "infocookie")
+
+    return axios.post("http://hackernewsclone5.herokuapp.com/posts/post", post, {
+        withCredentials: true
+    })
+
+
         .then(res => {
+            console.log(res, "pos tresponse ")
             axios
-                .get('http://localhost:3000/posts')
+                .get("https://hackernewsclone5.herokuapp.com/posts")
 
                 .then(res => {
                     dispatch({
@@ -44,14 +62,78 @@ export const addPost = (post) => (dispatch) => {
 
 export const login = creds => dispatch => {
 
-    return axios.post('https://superior2020.uc.r.appspot.com/users/login', creds)
-        .then(res => {
-            res.data.success == "logged in" ? localStorage.setItem('status', 1) : localStorage.setItem('status', 0);
-            console.log(localStorage, 'actions');
 
-            localStorage.getItem('status') ? localStorage.setItem("username", creds.username) : localStorage.setItem('username', '');
+
+    return axios.post('https://hackernewsclone5.herokuapp.com/users/login', creds)
+        .then(res => {
+
+            console.log('response login', res)
+            res.data.success == "logged in" ? localStorage.setItem("status", 1) : localStorage.setItem('status', 0);
+            console.log(res, 'login info response');
+
+            localStorage.getItem('status') ? localStorage.setItem("username", JSON.stringify(creds.username)) : localStorage.setItem('username', '');
+            // console.log(localStorage, 'loclstorage info ');
+
+            localStorage.setItem("token", res.config.headers)
+            console.log("token")
+
+            const instance = axios.create({
+                withCredentials: true,
+                baseURL: "https://hackernewsclone5.herokuapp.com"
+            })
+
+
+            console.log('instance', instance)
+
+
+
+            // let cookStore = cookie.load('connect.sid')
+
+            // Cookies.set('cook', cookStore)
+
+            // console.log(cookStore, "cookStore")
+
+
             axios
-                .get('https://superior2020.uc.r.appspot.com/posts')
+                .get('https://hackernewsclone5.herokuapp.com/posts')
+
+                .then(res => {
+                    dispatch({
+                        type: GET_POSTS_SUCCESS,
+                        payload: res.data
+                    });
+                })
+                .catch(err => {
+                    console.log(err);
+                });
+        });
+};
+
+
+export const registerNew = creds => dispatch => {
+
+
+
+    return axios.post('https://hackernewsclone5.herokuapp.com/users/register', creds)
+        .then(res => {
+
+            console.log(res.data)
+            res.data.success == "User Created" ? localStorage.setItem("status", 1) : localStorage.setItem('status', 0);
+
+            localStorage.getItem('status') ? localStorage.setItem("username", JSON.stringify(creds.username)) : localStorage.setItem('username', '');
+            // console.log(localStorage, 'loclstorage info ');
+
+
+            // let cookStore = cookie.load('connect.sid')
+
+            // Cookies.set('cook', cookStore)
+
+            // console.log(cookStore, "cookStore")
+
+
+
+            axios
+                .get('https://hackernewsclone5.herokuapp.com/posts')
 
                 .then(res => {
                     dispatch({

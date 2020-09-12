@@ -20,6 +20,7 @@ const HomeLoggedIn = (props) => {
             })
     }, [])
 
+    console.log('posts', posts)
 
 
     return (
@@ -52,10 +53,10 @@ const HomeLoggedIn = (props) => {
                 fontSize: "10px",
                 display: "inherit"
             }}>
-                {post.points} points by {post.author} | <a href="/"  style = {{
+                {post.upvote} points by {post.author} | <a href="/"  style = {{
                 textDecoration: "none",
                 color: 'black',
-            }}> {post.num_comments} comments</a>
+            }}> {post.comments.length} comments</a>
                 </td>
                 </tbody>
             

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import Navbar from "./navbar.js"
 import { addPost } from '../actions';
 
 
@@ -13,7 +12,6 @@ const Form = (props) => {
             "title": "",
             "link": "",
             "text": "",
-            "authorId": localStorage.getItem('username'),
 
         })
 
@@ -29,11 +27,7 @@ const Form = (props) => {
     const handleSubmit = e => {
         e.preventDefault()
         // needs to be made
-        props.addPost({
-            "authorId": "nick1",
-            "title": "pass",
-            "text": "testasxz"
-        });
+        props.addPost(post);
         console.log(post)
         setPost({
             "title": '',
