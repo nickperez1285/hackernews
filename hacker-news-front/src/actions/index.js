@@ -46,7 +46,7 @@ export const addPost = (post) => (dispatch) => {
         .then(res => {
             console.log(res, "pos tresponse ")
             axios
-                .get("https://hackernewsclone5.herokuapp.com/posts")
+                .get("https://hackernewsclone5.herokuapp.com/posts",{withCredentials: true})
 
                 .then(res => {
                     dispatch({
@@ -65,7 +65,7 @@ export const login = creds => dispatch => {
 
 
 
-    return axios.post('https://hackernewsclone5.herokuapp.com/users/login', creds)
+    return axios.post('https://hackernewsclone5.herokuapp.com/users/login', creds, {withCredentials: true} )
         .then(res => {
 
             console.log('response login', res)
@@ -96,7 +96,7 @@ export const login = creds => dispatch => {
 
 
             axios
-                .get('https://hackernewsclone5.herokuapp.com/posts')
+                .get('https://hackernewsclone5.herokuapp.com/posts' ,{withCredentials: true})
 
                 .then(res => {
                     dispatch({
@@ -115,7 +115,7 @@ export const registerNew = creds => dispatch => {
 
 
 
-    return axios.post('https://hackernewsclone5.herokuapp.com/users/register', creds)
+    return axios.post('https://hackernewsclone5.herokuapp.com/users/register', creds, {withCredentials: true})
         .then(res => {
 
             console.log(res.data)
@@ -135,7 +135,7 @@ export const registerNew = creds => dispatch => {
 
 
             axios
-                .get('https://hackernewsclone5.herokuapp.com/posts')
+                .get('https://hackernewsclone5.herokuapp.com/posts', {withCredentials: true})
 
                 .then(res => {
                     dispatch({
