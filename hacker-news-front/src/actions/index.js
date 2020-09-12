@@ -65,7 +65,10 @@ export const login = creds => dispatch => {
 
 
 
-    return axios.post('https://hackernewsclone5.herokuapp.com/users/login', creds)
+    return axios.post('https://hackernewsclone5.herokuapp.com/users/login', creds, {
+        withCredentials: true,
+        crossDomain: true
+    })
         .then(res => {
 
             console.log('response login', res)
@@ -132,7 +135,6 @@ export const registerNew = creds => dispatch => {
             // Cookies.set('cook', cookStore)
 
             // console.log(cookStore, "cookStore")
-
 
 
             axios
