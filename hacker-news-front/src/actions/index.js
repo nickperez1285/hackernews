@@ -65,10 +65,7 @@ export const login = creds => dispatch => {
 
 
 
-    return axios.post('https://hackernewsclone5.herokuapp.com/users/login', creds, {
-        withCredentials: true,
-        crossDomain: true
-    })
+    return axios.post('https://hackernewsclone5.herokuapp.com/users/login', creds)
         .then(res => {
 
             console.log('response login', res)
